@@ -38,6 +38,10 @@ body {
     align-items: center;
     border: 1px solid #ccc;
     border-radius: 5px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
     &:hover {
       background-color: #f4f4f4;
     }
@@ -55,12 +59,19 @@ body {
       &__edit {
         width: 70px;
         text-align: right;
+        display: flex;
+        justify-content: space-between;
+
         a {
           color: gray;
           padding-right: 10px;
+          -webkit-transition: all 0.3s ease-out;
+          -moz-transition: all 0.3s ease-out;
+          -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
 
           &:hover {
-            color: burlywood;
+            color: rgb(63, 183, 252);
           }
         }
       }
@@ -86,11 +97,29 @@ body {
     border: 1px solid #b1b1b1;
     border-radius: 5px;
 
-    &[type="text"] {
-      flex-grow: 1;
+    &#formName {
+      flex-basis: 400px;
+      box-sizing: border-box;
     }
+
+    &#formPhone {
+      flex-basis: 360px;
+      box-sizing: border-box;
+    }
+
     &[type="button"] {
       width: 120px;
+      background-color: gray;
+      color: white;
+      -webkit-transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      -o-transition: all 0.3s ease-out;
+      transition: all 0.3s ease-out;
+
+    }
+
+    &[type="button"]:hover {
+      background-color: rgb(63, 183, 252);
     }
   }
 }
