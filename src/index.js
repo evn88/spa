@@ -1,35 +1,33 @@
-// import {$} from '@core/dom'
+import {validate} from '@core/validator'
+// import {Connector} from '@core/Connector'
 import './scss/index.scss'
+
+// const api = new Connector({
+//   url: 'https://dev.vershkoff.ru/api',
+// })
+
+// console.log(api)
 
 const form = document.querySelector('form')
 const list = document.querySelector('.list')
-// button.submit = handleButtonClick
 
-// function handleButtonClick() {
-//   const formName = document.getElementById('formName')
-//   const formPhone = document.getElementById('formPhone')
-
-//   console.log('formName', formName.value)
-//   console.log('formPhone', formPhone.value)
-
-//   formName.value = formPhone.value = ''
-// }
-
-// console.log(list)
-// for (const item of list) {
-//   console.log(
-//       item
-//   )
-// }
-// for(let i = 0; i < lis)
-
-// Обработка формы
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
   const formName = document.getElementById('formName')
   const formPhone = document.getElementById('formPhone')
+
+  const formNameErr = validate(
+      formName,
+      ['required', 'string', 'min:3'],
+      'errorMessage'
+  )
+  const formPhoneErr = validate(
+      formPhone,
+      ['required', 'phone'],
+      'errorMessage'
+  )
 
   const listHTML =
    `<div class="list__item">
@@ -41,10 +39,13 @@ form.addEventListener('submit', function(e) {
       </div>
     </div>`;
 
-  list.insertAdjacentHTML('beforeEnd', listHTML)
 
-  formName.value = formPhone.value = ''
-  formName.focus();
+  if (formNameErr || formPhoneErr) {
+    // console.log('form: ', formName, formPhone)
+    list.insertAdjacentHTML('beforeEnd', listHTML)
+    formName.value = formPhone.value = null // clean form
+    formName.focus();
+  }
 })
 
 // Обработка удаления
@@ -54,5 +55,3 @@ list.addEventListener('click', function(e) {
     e.target.closest('.list__item').remove();
   }
 })
-
-

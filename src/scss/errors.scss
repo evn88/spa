@@ -1,0 +1,17 @@
+#errorMessage {
+  margin: 20px;
+  padding: 10px;
+  background-color: #f3c2c2;
+  color: #9a1010;
+  border: 1px solid #ac0303;
+  border-radius: 5px;
+
+  h3 {
+    padding-bottom: 5px;
+  }
+
+  li {
+    list-style: square outside;
+    margin-left: 15px;
+  }
+}
