@@ -42,7 +42,6 @@ form.addEventListener('submit', function(e) {
 
   if (formNameErr || formPhoneErr) {
     // console.log('form: ', formName, formPhone)
-    list.insertAdjacentHTML('beforeEnd', listHTML)
     formName.value = formPhone.value = null // clean form
     formName.focus();
   }
