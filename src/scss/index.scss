@@ -51,6 +51,7 @@ body {
     .item {
       margin-right: 5px;
       padding: 10px;
+      box-sizing: border-box;
 
       &.delete {
         display: none;
@@ -98,30 +99,40 @@ body {
   border-radius: 5px;
   background-color: #1111;
 
-
-  input {
-    height: 35px;
-    padding: 0 10px;
+  .form__item {
+    flex-basis: 360px;
     margin: 7px 5px;
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-
-    &#formName {
-      flex-basis: 400px;
-      box-sizing: border-box;
+    &:first-child {
+      flex-basis: 420px;
     }
 
-    &#formPhone {
-      flex-basis: 360px;
-      box-sizing: border-box;
+    input {
+      height: 35px;
+      padding: 0 10px;
+
+      border: 1px solid #b1b1b1;
+      border-radius: 5px;
+      width: 100%;
+
+      &#formName {
+        flex-basis: 400px;
+        box-sizing: border-box;
+      }
+
+      &#formPhone {
+        flex-basis: 360px;
+        box-sizing: border-box;
+      }
+    }
+
+    input:active, input:focus {
+      outline: none !important;
+      border: 2px solid rgb(63, 183, 252);
+      border-radius: 5px;
     }
   }
 
-  input:active, input:focus {
-    outline: none !important;
-    border: 2px solid rgb(63, 183, 252);
-    border-radius: 5px;
-  }
+
 
   button {
     width: 120px;
@@ -146,4 +157,12 @@ body {
   button:active, button:focus {
     outline: none !important;
   }
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }

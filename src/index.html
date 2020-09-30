@@ -14,34 +14,58 @@
     </div>
     <div class="list">
       <div class="list__item">
-        <div class="item item__name" contenteditable>имя</div>
-        <div class="item item__phone" contenteditable>телефон</div>
+        <div class="item item__name">
+          <div class="item form-control" contenteditable>имя</div>
+          <span class="error">test</span>
+        </div>
+        <div class="item item__phone">
+          <div class="item form-control" contenteditable>телефон</div>
+          <span class="error">test</span>
+        </div>
         <div class="item item__edit">
-          <a href="#"><span class="material-icons save">save_alt</span></a>
+          <a href="#"><span class="material-icons save">save</span></a>
           <a href="#"><span class="material-icons delete">delete</span></a>
         </div>
       </div>
       <div class="list__item">
-        <div class="item item__name" contenteditable>имя</div>
-        <div class="item item__phone" contenteditable>телефон</div>
+        <div class="item item__name">
+          <div class="item form-control" contenteditable>имя</div>
+          <span class="error">test</span>
+        </div>
+        <div class="item item__phone">
+          <div class="item form-control" contenteditable>телефон</div>
+          <span class="error">test</span>
+        </div>
         <div class="item item__edit">
-          <a href="#"><span class="material-icons save">save_alt</span></a>
+          <a href="#"><span class="material-icons save">save</span></a>
           <a href="#"><span class="material-icons delete">delete</span></a>
         </div>
       </div>
       <div class="list__item">
-        <div class="item item__name" contenteditable>имя</div>
-        <div class="item item__phone" contenteditable>телефон</div>
+        <div class="item item__name">
+          <div class="item form-control" contenteditable>имя</div>
+          <span class="error">test</span>
+        </div>
+        <div class="item item__phone">
+          <div class="item form-control" contenteditable>телефон</div>
+          <span class="error">test</span>
+        </div>
         <div class="item item__edit">
-          <a href="#"><span class="material-icons save">save_alt</span></a>
+          <a href="#"><span class="material-icons save">save</span></a>
           <a href="#"><span class="material-icons delete">delete</span></a>
         </div>
       </div>
     </div>
     <div class="form">
       <form>
-        <input type="text" name="name" id="formName" placeholder="Имя">
-        <input type="text" name="phone" id="formPhone" placeholder="Телефон">
+        <div class="form__item">
+          <input type="text" name="name" id="formName" class="form-control" placeholder="Имя">
+          <span class="error">testx</span>
+        </div>
+        <div class="form__item">
+          <input type="tel" name="phone" id="formPhone" class="form-control"  placeholder="Телефон">
+          <span class="error"></span>
+        </div>
         <button type="submit" id="addButton">Добавить</button>
       </form>
     </div>
