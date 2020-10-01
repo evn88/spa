@@ -1,7 +1,5 @@
 /* eslint-disable no-useless-escape */
 export function validate(elements = [], conditions = []) {
-  const isError = false
-
   const err = {
     'phone': {
       'msg': 'Неверный формат номера телефона',
@@ -13,7 +11,7 @@ export function validate(elements = [], conditions = []) {
     },
     'required': {
       'msg': 'Поле не может быть пустым',
-      'pattern': /^\s*$/
+      'pattern': /\w|\b/g
     }
   }
 
@@ -21,23 +19,25 @@ export function validate(elements = [], conditions = []) {
     const el = document.getElementById(elements[i])
     const errorForm = el.parentElement.getElementsByClassName('error')
     const input = el.value
+    errorForm[0].style.display = 'none'
 
-    errorForm[0].style.display = 'block'
-    errorForm[0].innerText = err.required.msg
-    console.log(input)
-    return isError
+    if (input.length == 0) {
+      errorForm[0].style.display = 'block'
+      errorForm[0].innerText = err.required.msg
+    }
+
+    for (let i = 0; i < conditions.length; i++) {
+      try {
+        if (!err[conditions[i]]['pattern'].test(input)) {
+          errorForm[0].style.display = 'block'
+          errorForm[0].innerText = err[conditions[i]].msg
+          return false
+        }
+      } catch (err) {
+        console.error('error: can\'t find pattern in validator', err)
+      }
+    }
+
+    return true
   }
-
-  for (let i = 0; i < conditions.length; i++) {
-    // console.log(conditions)
-  }
-
-  // function delErrors() {
-  //   const errorItems = errorList.getElementsByTagName('li');
-  //   if (errorItems.length > 0) {
-  //     for (let i = 0; i < errorItems.length; i++) {
-  //       errorItems[i].remove()
-  //     }
-  //   }
-  // }
 }

@@ -10,40 +10,56 @@ import './scss/index.scss'
 
 const form = document.querySelector('form')
 const list = document.querySelector('.list')
+const formName = document.getElementById('formName')
+const formPhone = document.getElementById('formPhone')
+const divItem = document.getElementsByClassName('item form-control')
 
+for (let i = 0; i < divItem.length; i++) {
+  const div = divItem[i]
+  div.addEventListener('blur', function(e) {
+    console.log(divItem[i].textContent)
+  })
+}
 
 form.addEventListener('submit', function(e) {
   e.preventDefault()
-
-  // const formName = document.getElementById('formName')
-  // const formPhone = document.getElementById('formPhone')
-
+  const idValue = 'id_' + new Date().getTime()
   /**
    * 1) forms array
    * 2) conditions array
    */
   const formNameErr = validate(
       ['formName', 'test'],
-      ['required', 'string', 'min:3']
+      ['required', 'name']
   )
   const formPhoneErr = validate(
       ['formPhone'],
       ['required', 'phone']
   )
 
-  const listHTML =
-   `<div class="list__item">
-      <div class="item item__name form-control" contenteditable></div>
-      <div class="item item__phone form-control" contenteditable></div>
-      <div class="item item__edit">
-        <a href="#"><span class="material-icons save">save</span></a>
-        <a href="#"><span class="material-icons delete">delete</span></a>
-      </div>
-    </div>`;
 
-  console.log('err: ', formNameErr, formPhoneErr)
+  const listHTML =
+`<div class="list__item" id="${idValue}">
+   <div class="item item__name form-control" contenteditable>
+      ${formName.value}
+   </div>
+   <div class="item item__phone form-control" contenteditable>
+      ${formPhone.value}
+   </div>
+
+   <div class="item item__edit">
+     <a href="#"><span class="material-icons save">save</span></a>
+     <a href="#"><span class="material-icons delete">delete</span></a>
+   </div>
+ </div>`;
+
+
+  console.log('err: ', formNameErr, formPhoneErr, idValue)
+
   if (formNameErr && formPhoneErr) {
     list.insertAdjacentHTML('beforeEnd', listHTML)
+    formName.value = formPhone.value = null // clean form
+    formName.focus()
   }
   // formName.value = formPhone.value = null // clean form
   // formName.focus()
