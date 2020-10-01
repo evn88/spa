@@ -13,7 +13,7 @@ const list = document.querySelector('.list')
 const formName = document.getElementById('formName')
 const formPhone = document.getElementById('formPhone')
 const divItem = document.getElementsByClassName('item form-control')
-
+/* TODO Не работает для вновь созданных элеметов */
 for (let i = 0; i < divItem.length; i++) {
   const div = divItem[i]
   div.addEventListener('blur', function(e) {
@@ -24,10 +24,7 @@ for (let i = 0; i < divItem.length; i++) {
 form.addEventListener('submit', function(e) {
   e.preventDefault()
   const idValue = 'id_' + new Date().getTime()
-  /**
-   * 1) forms array
-   * 2) conditions array
-   */
+
   const formNameErr = validate(
       ['formName', 'test'],
       ['required', 'name']
@@ -37,21 +34,27 @@ form.addEventListener('submit', function(e) {
       ['required', 'phone']
   )
 
-
   const listHTML =
-`<div class="list__item" id="${idValue}">
-   <div class="item item__name form-control" contenteditable>
-      ${formName.value}
-   </div>
-   <div class="item item__phone form-control" contenteditable>
-      ${formPhone.value}
-   </div>
+    `<div class="list__item" id="${idValue}">
+      <div class="item item__name">
+        <div class="item form-control" contenteditable>
+           ${formName.value}
+        </div>
+        <span class="error"></span>
+      </div>
 
-   <div class="item item__edit">
-     <a href="#"><span class="material-icons save">save</span></a>
-     <a href="#"><span class="material-icons delete">delete</span></a>
-   </div>
- </div>`;
+      <div class="item item__name">
+        <div class="item form-control" contenteditable>
+          ${formPhone.value}
+        </div>
+        <span class="error"></span>
+      </div>
+
+      <div class="item item__edit">
+        <a href="#"><span class="material-icons save">save</span></a>
+        <a href="#"><span class="material-icons delete">delete</span></a>
+      </div>
+    </div>`;
 
 
   console.log('err: ', formNameErr, formPhoneErr, idValue)
@@ -61,8 +64,6 @@ form.addEventListener('submit', function(e) {
     formName.value = formPhone.value = null // clean form
     formName.focus()
   }
-  // formName.value = formPhone.value = null // clean form
-  // formName.focus()
 })
 
 // Обработка удаления
