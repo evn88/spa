@@ -26,7 +26,7 @@ form.addEventListener('submit', function(e) {
   const idValue = 'id_' + new Date().getTime()
 
   const formNameErr = validate(
-      ['formName', 'test'],
+      ['formName'],
       ['required', 'name']
   )
   const formPhoneErr = validate(

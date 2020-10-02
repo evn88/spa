@@ -10,16 +10,15 @@ export function validate(elements = [], rules = []) {
   const err = {
     'phone': {
       'msg': 'Неверный формат номера телефона',
-      'pattern': /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+      'pattern': /^([+]?[0-9\s-\(\)]{3,25})*$/i
     },
     'name': {
       'msg': 'Введите Ваше реальное имя',
-      /* TODO Не проверяет Cyrillic */
-      'pattern': /[\wа-яА-ЯЁё]+/gi,
+      'pattern': /[\wа-яА-ЯЁё]{2,20}/ug,
     },
     'required': {
       'msg': 'Поле не может быть пустым',
-      'pattern': /\w|\b/g
+      'pattern': /[\wа-яА-ЯЁё]|\b/ug
     }
   }
 
