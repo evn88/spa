@@ -6,7 +6,7 @@
  * @return {boolean}
  */
 
-export function validate(elements = [], rules = []) {
+export function validate(elements, rules = []) {
   const err = {
     'phone': {
       'msg': 'Неверный формат номера телефона',
@@ -22,30 +22,30 @@ export function validate(elements = [], rules = []) {
     }
   }
 
-  for (let i = 0; i < elements.length; i++) {
-    const el = document.getElementById(elements[i])
-    const errorForm = el.parentElement.getElementsByClassName('error')
-    const input = String(el.value)
-    errorForm[0].style.display = 'none'
+  const input = (elements.tagName === 'INPUT')
+  ? elements.value
+  : elements.innerText
 
-    console.log('length ', input)
-    if (input.length == 0) {
-      errorForm[0].style.display = 'block'
-      errorForm[0].innerText = err.required.msg
-    }
+  const errorForm = elements.parentElement.getElementsByClassName('error')
+  errorForm[0].style.display = 'none'
 
-    for (let i = 0; i < rules.length; i++) {
-      try {
-        if (!err[rules[i]].pattern.test(input)) {
-          errorForm[0].style.display = 'block'
-          errorForm[0].innerText = err[rules[i]].msg
-          return false
-        }
-      } catch (err) {
-        console.error('error: can\'t find pattern in validator', err)
-      }
-    }
-
-    return true
+  console.log('length ', input.length)
+  if (input == 0) {
+    errorForm[0].style.display = 'block'
+    errorForm[0].innerText = err.required.msg
   }
+
+  for (let i = 0; i < rules.length; i++) {
+    try {
+      if (!err[rules[i]].pattern.test(input)) {
+        errorForm[0].style.display = 'block'
+        errorForm[0].innerText = err[rules[i]].msg
+        return false
+      }
+    } catch (err) {
+      console.error('error: can\'t find pattern in validator', err)
+    }
+  }
+
+  return true
 }

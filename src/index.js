@@ -12,12 +12,18 @@ const form = document.querySelector('form')
 const list = document.querySelector('.list')
 const formName = document.getElementById('formName')
 const formPhone = document.getElementById('formPhone')
-const divItem = document.getElementsByClassName('item form-control')
+const divItem = document.getElementsByClassName('list__item')
+
 /* TODO Не работает для вновь созданных элеметов */
-for (let i = 0; i < divItem.length; i++) {
-  const div = divItem[i]
-  div.addEventListener('blur', function(e) {
-    console.log(divItem[i].textContent)
+for (const div of divItem) {
+  const inputName = div.getElementsByClassName('form-control')[0]
+  const inputPhone = div.getElementsByClassName('form-control')[1]
+
+  inputName.addEventListener('blur', (e) => {
+    validate(e.path[0], ['required', 'name'])
+  })
+  inputPhone.addEventListener('blur', (e) => {
+    validate(e.path[0], ['required', 'phone'])
   })
 }
 
@@ -26,11 +32,11 @@ form.addEventListener('submit', function(e) {
   const idValue = 'id_' + new Date().getTime()
 
   const formNameErr = validate(
-      ['formName'],
+      formName,
       ['required', 'name']
   )
   const formPhoneErr = validate(
-      ['formPhone'],
+      formPhone,
       ['required', 'phone']
   )
 
@@ -61,6 +67,7 @@ form.addEventListener('submit', function(e) {
 
   if (formNameErr && formPhoneErr) {
     list.insertAdjacentHTML('beforeEnd', listHTML)
+    console.log('list', list)
     formName.value = formPhone.value = null // clean form
     formName.focus()
   }
