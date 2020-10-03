@@ -1,4 +1,5 @@
-import {validate} from '@core/validator'
+import { validate } from '@core/validator'
+import { addEvent } from '@core/utils'
 // import {Connector} from '@core/Connector'
 import './scss/index.scss'
 
@@ -13,20 +14,6 @@ const list = document.querySelector('.list')
 const formName = document.getElementById('formName')
 const formPhone = document.getElementById('formPhone')
 
-function addEvent(elements) {
-  for (const div of elements) {
-    const divName = div.getElementsByClassName('form-control')[0]
-    const divPhone = div.getElementsByClassName('form-control')[1]
-
-    divName.addEventListener('blur', (e) => {
-      console.log(e)
-      validate(e.target, ['required', 'name'])
-    })
-    divPhone.addEventListener('blur', (e) => {
-      validate(e.target, ['required', 'phone'])
-    })
-  }
-}
 addEvent(list.children)
 
 form.addEventListener('submit', function(e) {
@@ -46,14 +33,14 @@ form.addEventListener('submit', function(e) {
     `<div class="list__item" id="${idValue}">
       <div class="item item__name">
         <div class="item form-control" contenteditable>
-           ${formName.value}
+           ${formName.value.trim()}
         </div>
         <span class="error"></span>
       </div>
 
       <div class="item item__name">
         <div class="item form-control" contenteditable>
-          ${formPhone.value}
+          ${formPhone.value.trim()}
         </div>
         <span class="error"></span>
       </div>
