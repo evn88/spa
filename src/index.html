@@ -1,78 +1,31 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <title>spa</title>
-</head>
-<body>
-  <div id="app">
-    <div class="head">
-      <h1>Task 2 - SPA</h1>
-    </div>
-    <div class="list">
-      <div class="list__item" id="id_1">
-        <div class="item item__name">
-          <div class="item form-control" contenteditable>Егор</div>
-          <span class="error"></span>
-        </div>
-        <div class="item item__phone">
-          <div class="item form-control" contenteditable>1234567890</div>
-          <span class="error"></span>
-        </div>
-        <div class="item item__edit">
-          <a href="#"><span class="material-icons save">save</span></a>
-          <a href="#"><span class="material-icons delete">delete</span></a>
-        </div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>spa</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="head">
+        <h1>Task 2 - SPA</h1>
       </div>
-      <div class="list__item" id="id_2">
-        <div class="item item__name">
-          <div class="item form-control" contenteditable>Анна</div>
-          <span class="error"></span>
-        </div>
-        <div class="item item__phone">
-          <div class="item form-control" contenteditable>1234567890</div>
-          <span class="error"></span>
-        </div>
-        <div class="item item__edit">
-          <a href="#"><span class="material-icons save">save</span></a>
-          <a href="#"><span class="material-icons delete">delete</span></a>
-        </div>
-      </div>
-      <div class="list__item" id="id_3">
-        <div class="item item__name">
-          <div class="item form-control" contenteditable>имя</div>
-          <span class="error">test</span>
-        </div>
-        <div class="item item__phone">
-          <div class="item form-control" contenteditable>1234567890</div>
-          <span class="error">test</span>
-        </div>
-        <div class="item item__edit">
-          <a href="#"><span class="material-icons save">save</span></a>
-          <a href="#"><span class="material-icons delete">delete</span></a>
-        </div>
+      <div class="list"></div>
+      <div class="form">
+        <form>
+          <div class="form__item">
+            <input type="text" name="name" id="formName" class="form-control" placeholder="Имя">
+            <span class="error"></span>
+          </div>
+          <div class="form__item">
+            <input type="tel" name="phone" id="formPhone" class="form-control"  placeholder="Телефон">
+            <span class="error"></span>
+          </div>
+          <button type="submit" id="addButton">Добавить</button>
+        </form>
       </div>
     </div>
-    <div class="form">
-      <form>
-        <div class="form__item">
-          <input type="text" name="name" id="formName" class="form-control" placeholder="Имя">
-          <span class="error"></span>
-        </div>
-        <div class="form__item">
-          <input type="tel" name="phone" id="formPhone" class="form-control"  placeholder="Телефон">
-          <span class="error"></span>
-        </div>
-        <button type="submit" id="addButton">Добавить</button>
-      </form>
-    </div>
-    <div id="errorMessage" style="display: none;">
-      <h3>Устраните следующие ошибки: </h3>
-      <ul id="errorList"></ul>
-    </div>
-  </div>
-</body>
+  </body>
 </html>

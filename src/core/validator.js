@@ -29,7 +29,7 @@ export function validate(elements, rules = []) {
   const errorForm = elements.parentElement.getElementsByClassName('error')
   errorForm[0].style.display = 'none'
 
-  console.log('length ', input.length)
+  // console.log('length ', input.length)
   if (input == 0) {
     errorForm[0].style.display = 'block'
     errorForm[0].innerText = err.required.msg

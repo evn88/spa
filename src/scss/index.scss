@@ -7,6 +7,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -147,7 +150,7 @@ body {
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-
+    cursor: pointer;
   }
 
   button:hover {

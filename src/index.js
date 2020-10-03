@@ -1,21 +1,30 @@
 import { validate } from '@core/validator'
 import { addEvent } from '@core/utils'
-// import {Connector} from '@core/Connector'
+import { Api } from '@core/api'
+import { template } from '@core/template'
 import './scss/index.scss'
-
-// const api = new Connector({
-//   url: 'https://dev.vershkoff.ru/api',
-// })
-
-// console.log(api)
 
 const form = document.querySelector('form')
 const list = document.querySelector('.list')
 const formName = document.getElementById('formName')
 const formPhone = document.getElementById('formPhone')
 
-addEvent(list.children)
+const api = new Api({
+  url: 'http://localhost:3000',
+})
 
+// получаем всех пользователей с сервера
+const users = api.get()
+users.then(user => {
+  user.map(function(user) {
+    list.insertAdjacentHTML(
+        'beforeEnd',
+        template(user.id, user.name, user.phone))
+    addEvent(list.children)
+  })
+})
+
+// обработка добавления записи
 form.addEventListener('submit', function(e) {
   e.preventDefault()
   const idValue = 'id_' + new Date().getTime()
@@ -29,33 +38,11 @@ form.addEventListener('submit', function(e) {
       ['required', 'phone']
   )
 
-  const listHTML =
-    `<div class="list__item" id="${idValue}">
-      <div class="item item__name">
-        <div class="item form-control" contenteditable>
-           ${formName.value.trim()}
-        </div>
-        <span class="error"></span>
-      </div>
-
-      <div class="item item__name">
-        <div class="item form-control" contenteditable>
-          ${formPhone.value.trim()}
-        </div>
-        <span class="error"></span>
-      </div>
-
-      <div class="item item__edit">
-        <a href="#"><span class="material-icons save">save</span></a>
-        <a href="#"><span class="material-icons delete">delete</span></a>
-      </div>
-    </div>`;
-
-
-  console.log('err: ', formNameErr, formPhoneErr, idValue)
-
   if (formNameErr && formPhoneErr) {
-    list.insertAdjacentHTML('beforeEnd', listHTML)
+    list.insertAdjacentHTML(
+        'beforeEnd',
+        template(idValue, formName.value.trim(), formPhone.value.trim())
+    )
     addEvent(list.children)
     formName.value = formPhone.value = null // clean form
     formName.focus()
@@ -63,7 +50,6 @@ form.addEventListener('submit', function(e) {
 })
 
 // Обработка удаления
-
 list.addEventListener('click', function(e) {
   if (e.target.classList.contains('delete')) {
     e.target.closest('.list__item').remove()
