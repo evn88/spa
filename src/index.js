@@ -12,20 +12,22 @@ const form = document.querySelector('form')
 const list = document.querySelector('.list')
 const formName = document.getElementById('formName')
 const formPhone = document.getElementById('formPhone')
-const divItem = document.getElementsByClassName('list__item')
 
-/* TODO Не работает для вновь созданных элеметов */
-for (const div of divItem) {
-  const inputName = div.getElementsByClassName('form-control')[0]
-  const inputPhone = div.getElementsByClassName('form-control')[1]
+function addEvent(elements) {
+  for (const div of elements) {
+    const divName = div.getElementsByClassName('form-control')[0]
+    const divPhone = div.getElementsByClassName('form-control')[1]
 
-  inputName.addEventListener('blur', (e) => {
-    validate(e.path[0], ['required', 'name'])
-  })
-  inputPhone.addEventListener('blur', (e) => {
-    validate(e.path[0], ['required', 'phone'])
-  })
+    divName.addEventListener('blur', (e) => {
+      console.log(e)
+      validate(e.target, ['required', 'name'])
+    })
+    divPhone.addEventListener('blur', (e) => {
+      validate(e.target, ['required', 'phone'])
+    })
+  }
 }
+addEvent(list.children)
 
 form.addEventListener('submit', function(e) {
   e.preventDefault()
@@ -67,7 +69,7 @@ form.addEventListener('submit', function(e) {
 
   if (formNameErr && formPhoneErr) {
     list.insertAdjacentHTML('beforeEnd', listHTML)
-    console.log('list', list)
+    addEvent(list.children)
     formName.value = formPhone.value = null // clean form
     formName.focus()
   }
