@@ -6,7 +6,6 @@ export function addEvent(elements) {
     const divPhone = div.getElementsByClassName('form-control')[1]
 
     divName.addEventListener('blur', (e) => {
-      console.log(e)
       validate(e.target, ['required', 'name'])
     })
     divPhone.addEventListener('blur', (e) => {

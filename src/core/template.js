@@ -13,10 +13,11 @@ export function template(id, name, phone) {
     </div>
     <span class="error"></span>
   </div>
-
+  ${(phone) ? `
   <div class="item item__edit">
-    <a href="#"><span class="material-icons save">save</span></a>
-    <a href="#"><span class="material-icons delete">delete</span></a>
+      <a href="#"><span class="material-icons save">save</span></a>
+      <a href="#"><span class="material-icons delete">delete</span></a>
   </div>
-</div>`;
+  `: ``}
+</div>`
 }

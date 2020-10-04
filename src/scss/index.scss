@@ -27,6 +27,8 @@ body {
   display: flex;
   height: 50px;
   align-items: center;
+  margin: 0 auto;
+  width: 90px;
 }
 
 .head {
@@ -97,8 +99,8 @@ body {
   }
 }
 
-.form form {
-  display: flex;
+#form form {
+  display: none;
   align-items: center;
   height: 50px;
   margin: 20px;

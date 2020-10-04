@@ -17,13 +17,18 @@ const api = new Api({
 const users = api.get()
 users.then(user => {
   user.map(function(user) {
-    // list.children.loader.style.display = 'none'
     list.insertAdjacentHTML(
         'beforeEnd',
         template(user.id, user.name, user.phone))
     addEvent(list.children)
+    // eslint-disable-next-line no-undef
+    loader.style.display = 'none'
+    if (user.id !== 0) {
+      form.style.display = 'flex'
+    }
   })
 })
+
 
 // обработка добавления записи
 form.addEventListener('submit', function(e) {
