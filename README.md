@@ -2,7 +2,7 @@
 
 **Test api**
 
-1. Install npm server `npm install -g json-server`
+1. Install json-server `npm install -g json-server`
 2. go to project folder `cd [project folder]/db`
 3. run `json-server db.json`
 
