@@ -43,6 +43,11 @@ form.addEventListener('submit', function(e) {
         'beforeEnd',
         template(idValue, formName.value.trim(), formPhone.value.trim())
     )
+    api.create({
+      id: idValue,
+      name: formName.value,
+      phone: formPhone.value
+    })
     addEvent(list.children)
     formName.value = formPhone.value = null // clean form
     formName.focus()
@@ -52,6 +57,8 @@ form.addEventListener('submit', function(e) {
 // Обработка удаления
 list.addEventListener('click', function(e) {
   if (e.target.classList.contains('delete')) {
-    e.target.closest('.list__item').remove()
+    const item = e.target.closest('.list__item')
+    api.delete(item.id)
+    item.remove()
   }
 })

@@ -12,22 +12,43 @@ export class Api {
     try {
       const response = await fetch(this.getUrl)
       const data = await response.json()
-      return data
+      return await data
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
-  create(data) {
-    return 'test create'
+  async create(data) {
+    try {
+      const response = await fetch(this.getUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(data)
+      })
+      const json = await response.json()
+      console.log(json)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   update(id, data) {
     return 'test edit'
   }
 
-  delete(id) {
-    return 'test del'
+  async delete(id) {
+    try {
+      await fetch(this.getUrl + '/' + id, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        }
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
