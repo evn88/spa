@@ -15,6 +15,11 @@ export class Api {
       return await data
     } catch (err) {
       console.error(err)
+      return [{
+        'id': 0,
+        'name': '!!! Нет подключения к API, запустите сервер !!!',
+        'phone': ''
+      }]
     }
   }
 
@@ -34,8 +39,20 @@ export class Api {
     }
   }
 
-  update(id, data) {
-    return 'test edit'
+  async update(id, data) {
+    try {
+      const response = await fetch(this.getUrl + '/' + id, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(data)
+      })
+      const json = await response.json()
+      console.log(json)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   async delete(id) {

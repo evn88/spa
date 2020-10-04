@@ -7,7 +7,7 @@ export function template(id, name, phone) {
     <span class="error"></span>
   </div>
 
-  <div class="item item__name">
+  <div class="item item__phone">
     <div class="item form-control" contenteditable>
       ${phone}
     </div>

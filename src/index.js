@@ -17,6 +17,7 @@ const api = new Api({
 const users = api.get()
 users.then(user => {
   user.map(function(user) {
+    // list.children.loader.style.display = 'none'
     list.insertAdjacentHTML(
         'beforeEnd',
         template(user.id, user.name, user.phone))
@@ -60,5 +61,12 @@ list.addEventListener('click', function(e) {
     const item = e.target.closest('.list__item')
     api.delete(item.id)
     item.remove()
+  }
+  if (e.target.classList.contains('save')) {
+    const item = e.target.closest('.list__item')
+    api.update(item.id, {
+      'name': item.getElementsByClassName('form-control')[0].innerText,
+      'phone': item.getElementsByClassName('form-control')[1].innerText
+    })
   }
 })
